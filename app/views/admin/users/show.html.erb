@@ -1,0 +1,30 @@
+<% title @user.full_name %>
+
+<p>
+  Membership <strong><%= membership_status(@user) %></strong>
+</p>
+<p>
+  Pickup in <strong><%= @user.pickup && @user.pickup.name %></strong>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= link_to @user.email %>
+</p>
+<p>
+  <strong>Daytime phone:</strong>
+  <%= @user.daytime_phone %>
+</p>
+<p>
+  <strong>Evening phone:</strong>
+  <%= @user.evening_phone %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_user_path(@user) %> |
+  <%= link_to("Delete", admin_user_path(@user), :confirm => 'Are you sure?', :method => :delete) + ' | ' if @user.orders.size == 0 %>
+  <%= link_to "View all members", admin_users_path %>
+</p>
+
+<h3>Last 4 orders</h3>
+
+<%= render :partial => "layouts/orders", :locals => { :orders => @user.orders.recent_first.limit(4) } %>

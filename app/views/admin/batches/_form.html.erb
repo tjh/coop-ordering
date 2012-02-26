@@ -1,0 +1,14 @@
+<%= form_for [:admin, @batch] do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field">
+    <%= f.label :deadline %><br />
+    <%= f.datetime_select :deadline %>
+  </div>
+
+  <br/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,33 +1,46 @@
-source 'http://rubygems.org'
+source :rubygems
 
-gem 'rails', '3.1.3'
+gem 'bundler'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'airbrake'
 
-gem 'mysql2'
+gem 'rails'
 
-gem 'json'
+# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+gem 'ruby-debug'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+gem 'nifty-generators'
+
+gem 'devise'
+gem 'omniauth'
+
+gem 'sass'
+
+gem 'validates_timeliness'
+
+gem 'will_paginate', '~> 3.0.beta'
+
+
+# Bundle gems for the local environment. Make sure to
+# put test-only gems in this group so their generators
+# and rake tasks are available in development mode:
+group :development, :test do
+  gem "rspec-rails", ">= 2.1.0"
+  gem "rspec"
+  gem "cucumber"
+  gem "cucumber-rails"
+  gem 'database_cleaner'
+  gem "capybara"
+  gem "autotest"
+  gem "factory_girl_rails"
+  gem "shoulda"
+  gem "heroku_san"
+  gem "heroku"
+  gem "taps"
+  gem "passenger"
+  gem "hirb"
+  gem "wirble"
+  gem "what_methods"
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'foreman'
 end
-
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-

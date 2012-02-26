@@ -1,0 +1,31 @@
+<% title "Order batches" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Batch ID</th>
+      <th>Pickup Location</th>
+      <th>Deadline</th>
+      <th>Orders</th>
+      <%= content_tag :th, 'Options', { :colspan => 4, :style => 'text-align: center;' } if is_admin? %>
+    </tr>
+  </thead>
+  <% @batches.each do |batch| %>
+    <%= content_tag :tr, :class => cycle(nil, 'alt') do %>
+      <td><%= batch.id %></td>
+      <td><%= batch.pickup.name %></td>
+      <th><%= link_to (batch.deadline ? batch.deadline.to_s(:table) : 'no deadline'), admin_batch_path(batch) %></th>
+      <td><%= batch.orders.size %></td>
+      <td><%= link_to "Summary", admin_batch_path(batch) %></td>
+      <td><%= link_to "Orders", admin_batch_orders_path(batch.id) %></td>
+      <td><%= link_to "Edit", edit_admin_batch_path(batch) %></td>
+      <td><%= batch.orders.size > 0 ?
+              '' :
+              link_to("Delete", admin_batch_path(batch), :confirm => 'Are you sure?', :method => :delete) %></td>
+    <% end %>
+  <% end %>
+</table>
+
+<p><%= will_paginate @batches %></p>
+
+<p><%= link_to "New order batch", new_admin_batch_path %></p>

@@ -1,0 +1,5 @@
+<% title 'Order History' %>
+
+<%= link_to 'Place a new order', new_member_order_path %>
+
+<%= render :partial => "layouts/orders", :locals => { :orders => @orders } %>

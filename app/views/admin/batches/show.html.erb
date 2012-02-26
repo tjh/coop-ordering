@@ -1,0 +1,41 @@
+<% title "#{@batch.pickup.name} order (Batch #{@batch.id})" %>
+
+<h3><%= "Order deadline: #{@batch.deadline ? @batch.deadline.to_s(:pretty) : 'none set'}" %></h3>
+
+<table>
+  <% @vendors.each do |v| %>
+    <tr>
+      <td colspan="5">
+        <div class="vendor">
+          <h2><%= v.name %></h2>
+        </div>
+      </td>
+    </tr>
+    <% v.categories.each do |c| %>
+      <% category_output = false %>
+      <% c.items.by_name.each do |item| %>
+        <% qty = @batch.orders.collect { |o| o.line_items.select { |i| i.item_id == item.id } }.flatten.inject(0) { |sum, line_item| sum + line_item.quantity } %>
+        <% next if qty == 0 %>
+        <% if !category_output %>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4">
+              <div class="category">
+                <h3><%= c.name %></h3>
+                <%= content_tag(:p, c.notes) if c.notes.present? %>
+              </div>
+            </td>
+          </tr>
+          <% category_output = true %>
+        <% end %>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><%= qty %> <%= item.sold_per %></td>
+          <td><%= item.name %><br /><span style="font-size: 11px;"><%= "(#{item.notes})" if item.notes.present? %></span></td>
+          <td><%= item.price.to_currency %>/<%= item.uom %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>

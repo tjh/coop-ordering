@@ -1,4 +1,7 @@
-Dummy::Application.routes.draw do
+FryFarmsCoop::Application.routes.draw do
+
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -46,13 +49,31 @@ Dummy::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
-  # See how all your routes lay out with "rake routes"
+  resources :pages, :only => [:index, :show]
+  resources :orders
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  match 'user_root', :to => "pages#show", :id => 'dashboard'
+
+  namespace :admin do
+    root :to => 'users#index'
+    resources :users
+    resources :vendors do
+      resources :categories, :only => [:new]
+    end
+    resources :categories, :except => [:new, :index] do
+      resources :items, :only => [:new]
+    end
+    resources :items, :except => [:index]
+    resources :batches do
+      match 'orders', :to => 'orders#index'
+    end
+    resources :orders, :only => [:show]
+  end
+
+  namespace :member do
+    resources :orders
+  end
+
+  root :to => 'pages#index'
 end

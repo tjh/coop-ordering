@@ -1,0 +1,25 @@
+<% title "Items" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Is Stocked</th>
+      <%= content_tag :th, 'Options', { :colspan => 2, :style => 'text-align: center;' } if is_admin? %>
+    </tr>
+  </thead>
+  <% @items.each do |item| %>
+    <%= content_tag :tr, :class => cycle(nil, 'alt') do %>
+      <th><%= item.name %></th>
+      <td><%= item.price.to_currency %></td>
+      <td style="text-align: center;"><%= red_green item.is_stocked, 'Available', 'Out of stock' %></td>
+      <% if is_admin? %>
+        <td><%= link_to "Edit", edit_item_path(item) %></td>
+        <td><%= link_to "Delete", item, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
+
+<p><%= link_to("New Item", new_item_path) if is_admin? %></p>

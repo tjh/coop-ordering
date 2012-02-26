@@ -1,0 +1,26 @@
+<% title @vendor.name %>
+<p>(click a category name to edit products)</p>
+<table>
+  <thead>
+    <tr>
+      <th>Categories</th>
+      <%= content_tag :th, 'Options', { :colspan => 2, :style => 'text-align: center;' } %>
+    </tr>
+  </thead>
+  <% @vendor.categories.each do |category| %>
+    <% row_class = cycle(nil, 'alt') %>
+    <%= content_tag :tr, :class => row_class do %>
+      <th><%= link_to category.name, admin_category_path(category) %></th>
+      <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
+      <td><%= link_to 'Delete', admin_category_path(category), :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+    <%= content_tag :tr, :class => row_class do %>
+      <td colspan="3"><%= category.notes %></td>
+    <% end %>
+  <% end %>
+  <tr>
+    <td colspan="3">
+      <%= link_to 'New category', new_admin_vendor_category_path(@vendor) %>
+    </td>
+  </tr>
+</table>

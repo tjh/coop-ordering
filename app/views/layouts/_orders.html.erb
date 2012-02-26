@@ -1,0 +1,36 @@
+<p><%= will_paginate orders if orders.respond_to?(:total_pages) %></p>
+
+<table style="width: 100%;">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Qty</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Farm</th>
+    </tr>
+  </thead>
+  <% orders.each do |order| %>
+    <% row_class = cycle(nil, 'alt') %>
+    <%= content_tag :tr, :class => row_class do %>
+      <td colspan="5">
+        <h2>Order #<%= order.id %></h2>
+        <%= content_tag('h3', link_to(order.user.full_name, admin_user_path(order.user)) + " / #{order.user.email}") if is_admin? %>
+        <p>Received <%= order.created_at.to_s(:pretty) %></p>
+      </td>
+    <% end %>
+    <% order.line_items.each do |line_item| %>
+      <%= content_tag :tr, :class => row_class do %>
+        <td>&nbsp;</td>
+        <td><%= line_item.quantity %> <%= line_item.sold_per %></td>
+        <td><%= line_item.name %><br /><span style="font-size: 11px;"><%= "(#{line_item.notes})" if line_item.notes.present? %></span></td>
+        <td>
+          <%= line_item.price.to_currency %>/<%= line_item.uom %>
+        </td>
+        <td><%= line_item.vendor_name %></td>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
+
+<p><%= will_paginate orders if orders.respond_to?(:total_pages) %></p>

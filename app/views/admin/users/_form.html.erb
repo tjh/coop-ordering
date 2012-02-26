@@ -1,0 +1,64 @@
+<%= form_for [:admin, @user] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :pickup_id, 'Pickup location' %><br />
+    <%= f.collection_select :pickup_id, Pickup.all, :id, :name, :prompt => true %></p>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <% if @user.new_record? %>
+    <p>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.label :daytime_phone %><br />
+    <%= f.text_field :daytime_phone %>
+  </p>
+  <p>
+    <%= f.label :evening_phone %><br />
+    <%= f.text_field :evening_phone %>
+  </p>
+  
+  <p>
+    <%= f.label :address1, 'Address line 1' %><br />
+    <%= f.text_field :address1 %>
+  </p>
+
+  <p>
+    <%= f.label :address2, 'Address line 2 (optional)' %><br />
+    <%= f.text_field :address2 %>
+  </p>
+
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state, :size => 2 %>
+  </p>
+
+  <p>
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </p>
+  
+  <p>
+    <%= f.label :is_member, "Approved member?" %><br />
+    <%= f.check_box :is_member %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

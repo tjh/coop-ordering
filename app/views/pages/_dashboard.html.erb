@@ -1,0 +1,45 @@
+<p>Welcome back, <%= current_user.first_name %>.</p>
+
+<% if is_admin? %>
+  As an admin, you may manage:
+  <ul>
+    <li><%= link_to 'most recent orders', admin_batches_path %></li>
+    <li>Next order deadlines:
+      <ul>
+        <% Pickup.all.each do |pickup| %>
+          <li><%= link_to(
+                    "#{pickup.name}: #{
+                      Batch.current(pickup.id).deadline ? Batch.current(pickup.id).deadline.to_s(:pretty) : ' none set'
+                    }",
+                    admin_batches_path ) -%>
+          </li>
+        <% end %>
+      </ul>
+    <li><%= link_to 'the items available from each farm', admin_vendors_path %></li>
+    <li><%= link_to 'users who access the web site', admin_users_path %></li>
+  </ul>
+
+  <p>The current server time is: <%= DateTime.now.to_s(:pretty) %></p>
+
+<% end %>
+
+<% if Batch.current(current_user.pickup_id).deadline && Batch.current(current_user.pickup_id).deadline < DateTime.now %>
+  <p>The <span style="color: red;">deadline has passed</span> to place your order for the upcoming pickup. Orders placed
+    now will be available on the following pickup date.</p>
+<% elsif Batch.current(current_user.pickup_id).deadline %>
+  <p>The deadline to place orders for the next pickup is: <%= Batch.current(current_user.pickup_id).deadline.to_s(:pretty) %></p>
+<% end %>
+
+<% if !current_user.is_member? %>
+  <p>We have not yet reviewed your membership status. Please give us a few days.</p>
+<% else %>
+  <p>Are you ready to <%= link_to 'place an order', new_member_order_path %>?</p>
+<% end %>
+
+<h2>Bulk Ordering</h2>
+
+<p>Bulk freezer meat is available for purchase at greatly discounted rates. For more information, please email Lauren Andrews at <%= link_to 'fryfarms@hotmail.com' %></p>
+
+<h2>Frequently Asked Questions (FAQ)</h2>
+
+<p>Be sure to read the <%= link_to 'frequently asked questions', page_path('faq') %> page. Even if you've been with us for a while, you'll learn a few things!</p>

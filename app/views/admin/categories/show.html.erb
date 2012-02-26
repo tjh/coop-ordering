@@ -1,0 +1,38 @@
+<% title "#{@category.name} from #{@category.vendor.name}" %>
+
+<p><%= @category.notes %></p>
+
+<p><%= link_to "Edit '#{@category.name}' category", edit_admin_category_path(@category) %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Items</th>
+      <th>Sold Per</th>
+      <th>Price</th>
+      <th>Available?</th>
+      <th>Limited?</th>
+      <th>Seasonal?</th>
+      <%= content_tag :th, 'Options', { :colspan => 2, :style => 'text-align: center;' } %>
+    </tr>
+  </thead>
+  <% @category.items.each do |item| %>
+    <%= content_tag :tr, :class => cycle(nil, 'alt') do %>
+      <th><%= item.name %></br><span style="font-size:8pt; font-weight: normal;"><%= item.notes %></span></th>
+      <td><%= item.sold_per %></td>
+      <td class="price-column"><%= "#{item.price.to_currency}/#{item.uom}" %></td>
+      <td><%= red_green item.is_stocked?, 'In stock', 'Out of stock' %></td>
+      <td><%= red_green !item.is_limited?, '', 'Limited' %></td>
+      <td><%= red_green !item.is_seasonal?, '', 'Seasonal' %></td>
+      <td><%= link_to 'Edit', edit_admin_item_path(item) %></td>
+      <td><%= link_to 'Delete', admin_item_path(item), :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  <% end %>
+  <tr>
+    <td colspan="7">
+      <%= link_to "New '#{@category.name}' item", new_admin_category_item_path(@category) %>
+    </td>
+  </tr>
+</table>
+
+<p><%= link_to "View all #{@category.vendor.name} categories", admin_vendor_path(@category.vendor)  %></p>

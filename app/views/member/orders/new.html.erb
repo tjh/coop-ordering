@@ -1,0 +1,92 @@
+
+<% if Batch.current(current_user.pickup_id).deadline && DateTime.now > Batch.current(current_user.pickup_id).deadline %>
+  <p style="color: red;">The order deadline has passed for the upcoming pickup. Your order
+    will be available at the following pickup.</p>
+<% end %>
+
+<%= form_for [:member, @order] do |f| %>
+  <% if @order.is_preview? %>
+    <% title "Preview order" %>
+    <p>Your order has not been placed yet. You must review and submit it.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Name (notes)</th>
+          <th>Price</th>
+          <th>Farm</th>
+        </tr>
+      </thead>
+      <%= f.fields_for :line_items, @order.line_items.sort_by { |i| [i.vendor_name, i.name] } do |item_fields| %>
+        <tr>
+          <td><%= item_fields.object.quantity %> <%= item_fields.object.sold_per %></td>
+          <td><%= item_fields.object.name %><br /><span style="font-size: 11px;"><%= "(#{item_fields.object.notes})" if item_fields.object.notes.present? %></span></td>
+          <td>
+            <%= item_fields.object.price.to_currency %>/<%= item_fields.object.uom %>
+            <%= item_fields.hidden_field :quantity %>
+            <%= item_fields.hidden_field :item_id %>
+          </td>
+          <td><%= item_fields.object.vendor_name %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="actions" style="margin-top: 30px;">
+      <%= f.hidden_field :is_preview %>
+      <%= f.submit 'Place order!' %>
+    </div>
+  <% else %>
+    <% title "New order" %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> must be fixed before placing your order:</h2>
+
+        <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <table>
+      <% @vendors.each do |v| %>
+        <tr>
+          <td colspan="5">
+            <div class="vendor">
+              <h2><%= v.name %></h2>
+            </div>
+          </td>
+        </tr>
+        <% v.categories.each do |c| %>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4">
+              <div class="category">
+                <h3><%= c.name %></h3>
+                <%= content_tag(:p, c.notes) if c.notes.present? %>
+              </div>
+            </td>
+          </tr>
+          <% c.items.in_stock.by_name.each do |i| %>
+            <%= f.fields_for :line_items, (@order.line_items.select { |line_item| line_item.item_id == i.id }.first || @order.line_items.build(:item_id => i.id)) do |item_fields| %>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><%= i.name %><br /><span style="font-size: 11px;"><%= "(#{i.notes})" if i.notes.present? %></span></td>
+                <td>
+                  <%= i.price.to_currency %>/<%= i.uom %>
+                  <%= item_fields.hidden_field :item_id %>
+                </td>
+                <td><%= item_fields.text_field :quantity, :size => 6 %> <%= i.sold_per %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </table>
+    <div class="actions" style="margin-top: 30px;">
+      <%= f.submit 'Preview order' %>
+    </div>
+  <% end %>
+  <%= f.hidden_field :is_preview %>
+<% end %>

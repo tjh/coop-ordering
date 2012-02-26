@@ -1,0 +1,19 @@
+<% title "Item" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+<p>
+  <strong>Is Stocked:</strong>
+  <%= @item.is_stocked %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_item_path(@item) %> |
+  <%= link_to "Delete", admin_item_path(@item), :confirm => 'Are you sure?', :method => :delete %> |
+</p>
