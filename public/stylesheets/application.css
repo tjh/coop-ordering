@@ -113,6 +113,11 @@ a:hover {
 a {
   color: #c75f3e; }
 
+table, tr, td {
+  border: 0px;
+  border-spacing: 0px;
+}
+
 table {
   background: #efefef;
   padding: 0;
