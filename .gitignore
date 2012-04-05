@@ -11,5 +11,5 @@ rerun.txt
 .yardoc
 capybara-*
 Procfile
-Procfile.env
+.env
 config/heroku.yml
