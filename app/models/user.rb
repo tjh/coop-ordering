@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
-  before_create :make_all_users_a_member
+  before_create :make_all_users_a_member,
+                :skip_confirmation!       # Don't require email confirmation for now
 
   attr_accessible :email,
                   :password,
