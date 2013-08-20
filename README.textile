@@ -1,7 +1,13 @@
-== Coop Ordering
+h1. Coop Ordering
 
 This is an application designed for the Fry Farms Coop to handle their online order placement for coop members and herd owners.
 
 Members/owners place orders before a deadline, with order batches closing at a pre-set time. Any order that's not received by the cut-off will go into the next batch.
 
 This system replaced a manual process with each member/owner sending an email explaining what they wanted to one person who had to decipher and collate over 100 orders.
+
+h1. License
+
+This code is "Uncopyrighted":http://mnmlist.com/uncopyright-and-a-minimalist-mindset/. Its author, Tim Harvey, has released all claims on copyright and has put all the content of this code into the public domain.
+
+No permission is needed to copy, distribute, or modify the content of this code repository. Credit is appreciated but not required.
