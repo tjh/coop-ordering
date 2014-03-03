@@ -33,17 +33,16 @@ group :development, :test do
   gem "hirb"
   gem "wirble"
   gem "what_methods"
-  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'foreman'
 end
 
 group :test do
-  gem "rspec-rails", ">= 2.1.0"
-  gem "rspec"
-  gem "cucumber"
-  gem "cucumber-rails"
-  gem 'database_cleaner'
-  gem "capybara"
-  gem "factory_girl_rails"
-  gem "shoulda"
+  #gem "rspec-rails", ">= 2.1.0"
+  #gem "rspec"
+  #gem "cucumber"
+  #gem "cucumber-rails"
+  #gem 'database_cleaner'
+  #gem "capybara"
+  #gem "factory_girl_rails"
+  #gem "shoulda"
 end
