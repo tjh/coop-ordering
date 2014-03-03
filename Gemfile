@@ -19,6 +19,7 @@ gem 'sass'
 gem 'validates_timeliness'
 
 gem 'will_paginate', '~> 3.0.beta'
+gem 'pg'
 
 
 # Bundle gems for the local environment. Make sure to
@@ -31,7 +32,6 @@ group :development, :test do
   gem "cucumber-rails"
   gem 'database_cleaner'
   gem "capybara"
-  gem "autotest"
   gem "factory_girl_rails"
   gem "shoulda"
   gem "heroku_san"

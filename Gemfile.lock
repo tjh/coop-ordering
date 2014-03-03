@@ -33,7 +33,6 @@ GEM
       activesupport
       builder
     arel (2.0.10)
-    autotest (4.4.5)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
     capybara (2.2.1)
@@ -139,6 +138,7 @@ GEM
       fastthread (>= 1.0.1)
       rack
       rake (>= 0.8.1)
+    pg (0.17.1)
     polyglot (0.3.3)
     pyu-ruby-sasl (0.0.3.2)
     rack (1.2.8)
@@ -218,7 +218,6 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
-  autotest
   bundler
   capybara
   cucumber
@@ -233,6 +232,7 @@ DEPENDENCIES
   nifty-generators
   omniauth
   passenger
+  pg
   rails
   rspec
   rspec-rails (>= 2.1.0)
