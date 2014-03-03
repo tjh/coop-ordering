@@ -21,7 +21,8 @@ class Member::OrdersController < MembersController
       @order.is_preview = true
       render :new
     else
-      @order.save
+      @order.save!
+      flash.notice = "Your order ##{@order.id} has been received for pickup at '#{@order.batch.pickup.name}'"
       redirect_to member_orders_path
     end
   end

@@ -7,7 +7,7 @@
 <%= form_for [:member, @order] do |f| %>
   <% if @order.is_preview? %>
     <% title "Preview order" %>
-    <p>Your order has not been placed yet. You must review and submit it.</p>
+    <p id="flash_notice">Your order has <strong>not been placed yet</strong>. You must click the "Place order!" button <strong>and</strong> see your order number on the next page.</p>
     <table>
       <thead>
         <tr>
