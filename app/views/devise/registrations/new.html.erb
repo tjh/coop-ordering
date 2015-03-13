@@ -10,7 +10,7 @@
   <%= f.text_field :last_name %></p>
 
   <p><%= f.label :pickup_id, 'Pickup location' %><br />
-  <%= f.collection_select :pickup_id, Pickup.all, :id, :name, :prompt => true %></p>
+  <%= f.collection_select :pickup_id, Pickup.active.all, :id, :name, :prompt => true %></p>
 
   <h3>Contact details</h3>
   <p><%= f.label :email %> (This will be your login)<br />
@@ -27,7 +27,7 @@
 
   <p><%= f.label :evening_phone %><br />
   <%= f.text_field :evening_phone %></p>
-  
+
   <h3>Address</h3>
   <p><%= f.label :address1, 'Address line 1' %><br />
   <%= f.text_field :address1 %></p>

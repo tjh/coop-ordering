@@ -6,7 +6,7 @@
     <li><%= link_to 'most recent orders', admin_batches_path %></li>
     <li>Next order deadlines:
       <ul>
-        <% Pickup.all.each do |pickup| %>
+        <% Pickup.active.all.each do |pickup| %>
           <li><%= link_to(
                     "#{pickup.name}: #{
                       Batch.current(pickup.id).deadline ? Batch.current(pickup.id).deadline.to_s(:pretty) : ' none set'
