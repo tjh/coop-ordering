@@ -11,6 +11,12 @@
     <p style="<%= 'color: red; font-weight: bold;' if order.batch.deadline && order.created_at > order.batch.deadline -%>">
       Ordered <%= order.created_at.to_s(:pretty) %>
     </p>
+    <% if order.notes.present? %>
+      <div style="color: green;">
+        Notes
+        <%= simple_format order.notes %>
+      </div>
+    <% end %>
 
     <%= hidden_field_tag :order_id, order.id %>
 

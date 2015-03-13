@@ -17,6 +17,9 @@
         <h2>Order #<%= order.id %></h2>
         <%= content_tag('h3', link_to(order.user.full_name, admin_user_path(order.user)) + " / #{order.user.email}") if is_admin? %>
         <p>Received <%= order.created_at.to_s(:pretty) %></p>
+        <% if order.notes.present? %>
+          <p>Notes: <%= order.notes %></p>
+        <% end %>
       </td>
     <% end %>
     <% order.line_items.each do |line_item| %>

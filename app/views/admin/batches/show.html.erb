@@ -38,4 +38,18 @@
       <% end %>
     <% end %>
   <% end %>
+
+  <tr>
+    <td colspan="5">
+      <div class="vendor">
+        <h2>Customer Order Notes</h2>
+        <% @batch.orders.by_user_name.each do |order| %>
+          <% if order.notes.present? %>
+            <h4><%= order.user.full_name %> (Order #<%= order.id %>)</h4>
+            <%= simple_format order.notes %>
+          <% end %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
 </table>

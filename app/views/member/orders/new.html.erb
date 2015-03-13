@@ -9,6 +9,16 @@
     <% title "Preview order" %>
     <p id="flash_notice">Your order has <strong>not been placed yet</strong>. You must click the "Place order!" button <strong>and</strong> see your order number on the next page.</p>
 
+    <% if @order.notes.present? %>
+      <%= f.hidden_field :notes %>
+      <h4>Notes To Coop</h4>
+      <div style="font-size: 12px">
+        <%= simple_format @order.notes %>
+      </div>
+
+      <h4>Items To Order</h4>
+    <% end %>
+
     <table>
       <thead>
         <tr>
@@ -48,6 +58,9 @@
         </ul>
       </div>
     <% end %>
+
+    <%= f.label :notes, 'Notes To Coop' %><br />
+    <%= f.text_area :notes, :cols => 120, :rows => 5 %>
 
     <table>
       <% @vendors.each do |v| %>
