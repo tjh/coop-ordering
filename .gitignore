@@ -10,6 +10,6 @@ rerun.txt
 .bundle
 .yardoc
 capybara-*
-Procfile
 .env
 config/heroku.yml
+*.dump
