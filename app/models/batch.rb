@@ -4,8 +4,10 @@ class Batch < ActiveRecord::Base
 
   default_scope order('id DESC')
 
-  scope :after_today, where("deadline IS NULL OR deadline > ?", Time.now).
-                      order('deadline DESC')
+  scope :after_today, lambda {
+    where("deadline IS NULL OR deadline > ?", Time.zone.now).
+    order('deadline DESC')
+  }
 
   scope :pickup, lambda { |pickup_id|
     where(:pickup_id => pickup_id)

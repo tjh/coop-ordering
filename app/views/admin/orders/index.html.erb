@@ -8,6 +8,10 @@
   <% @orders.each do |order| %>
     <h3><%= "#{order.user.last_name}, #{order.user.first_name}" %></h3>
 
+    <p style="<%= 'color: red; font-weight: bold;' if order.batch.deadline && order.created_at > order.batch.deadline -%>">
+      Ordered <%= order.created_at.to_s(:pretty) %>
+    </p>
+
     <%= hidden_field_tag :order_id, order.id %>
 
     <p>
