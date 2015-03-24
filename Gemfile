@@ -22,7 +22,7 @@ gem 'validates_timeliness'
 
 gem 'will_paginate', '~> 3.0.beta'
 gem 'pg'
-
+gem 'sucker_punch'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

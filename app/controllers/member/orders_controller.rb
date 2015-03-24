@@ -22,6 +22,13 @@ class Member::OrdersController < MembersController
       render :new
     else
       @order.save!
+
+      if Rails.env.development?
+        OrderMailer.new_order(@order).deliver
+      else
+        OrderMailJob.new.async.perform(@order.id)
+      end
+
       flash.notice = "Your order ##{@order.id} has been received for pickup at '#{@order.batch.pickup.name}'"
       redirect_to member_orders_path
     end

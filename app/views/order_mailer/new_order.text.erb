@@ -1,0 +1,17 @@
+Fry Farms Coop Order Confirmation
+=================================
+
+Order #<%= @order.id %> at <%= @order.batch.pickup.name %>
+  Received <%= @order.created_at.to_s(:pretty) %>
+  <% if @order.notes.present? -%>Notes: <%= @order.notes %><% end %>
+
+<% @order.line_items.each do |line_item| -%>
+<%= line_item.quantity %> <%= line_item.sold_per %> x <%= line_item.name %>
+    <%= "(#{line_item.notes})" if line_item.notes.present? -%>
+    <%= line_item.price.to_currency %>/<%= line_item.uom %>
+    <%= line_item.vendor_name %>
+<% end -%>
+
+
+For help with ordering or questions about the farm, contact Lauren Andrews (fryfarms@hotmail.com),
+Co-op Manager. Contact Tim Harvey (tim@literacy5.com) if you have technical difficulties with the site.

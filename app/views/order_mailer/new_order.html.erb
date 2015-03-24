@@ -1,0 +1,32 @@
+<h1>Fry Farms Coop Order Confirmation</h1>
+
+<h2>Order #<%= @order.id %> at <%= @order.batch.pickup.name -%></h2>
+<p>Received <%= @order.created_at.to_s(:pretty) %></p>
+<% if @order.notes.present? %>
+  <p>Notes: <%= @order.notes %></p>
+<% end %>
+
+<table style="width: 100%;">
+  <thead>
+    <tr style="text-align: left">
+      <th>Qty</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Farm</th>
+    </tr>
+  </thead>
+  <% @order.line_items.each do |line_item| %>
+    <%= content_tag :tr do %>
+      <td><%= line_item.quantity %> <%= line_item.sold_per %></td>
+      <td><%= line_item.name %><br /><span style="font-size: 11px;"><%= "(#{line_item.notes})" if line_item.notes.present? %></span></td>
+      <td>
+        <%= line_item.price.to_currency %>/<%= line_item.uom %>
+      </td>
+      <td><%= line_item.vendor_name %></td>
+    <% end %>
+  <% end %>
+</table>
+
+<div class="help">
+  <p>For help with ordering or questions about the farm, contact <%= link_to 'Lauren Andrews', 'mailto:fryfarms@hotmail.com' %>, Co-op Manager. <br />Contact <%= link_to 'Tim Harvey', 'mailto:tim@literacy5.com' %> if you have technical difficulties with the site.</p>
+</div>
