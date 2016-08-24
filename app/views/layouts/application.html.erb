@@ -50,9 +50,9 @@
       <p>Since the families who own the Fry Farms Co-Op are Amish, they cannot run a web site. This site is<br />
       owned and managed by Tim Harvey, of Fort Wayne, IN, as a free service to Fry Farms Co-op customers.</p>
     </div>
-    
+
     <div class="help">
-      <p>For help with ordering or questions about the farm, contact <%= link_to 'Lauren Andrews', 'mailto:fryfarms@hotmail.com' %>, Co-op Manager. <br />Contact <%= link_to 'Tim Harvey', 'mailto:tim@literacy5.com' %> if you have technical difficulties with the site.</p>
+      <p>For help with ordering or questions about the farm, contact <%= link_to Manager.full_name, "mailto:#{Manager.email}" %>, Co-op Managers. <br />Contact <%= link_to 'Tim Harvey', 'mailto:tim@literacy5.com' %> if you have technical difficulties with the site.</p>
     </div>
   </body>
 </html>

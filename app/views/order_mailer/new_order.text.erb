@@ -13,5 +13,5 @@ Order #<%= @order.id %> at <%= @order.batch.pickup.name %>
 <% end -%>
 
 
-For help with ordering or questions about the farm, contact Lauren Andrews (fryfarms@hotmail.com),
-Co-op Manager. Contact Tim Harvey (tim@literacy5.com) if you have technical difficulties with the site.
+For help with ordering or questions about the farm, contact <%= Manager.full_name -%> (<%= Manager.email -%>),
+Co-op Managers. Contact Tim Harvey (tim@literacy5.com) if you have technical difficulties with the site.

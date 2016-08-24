@@ -5,11 +5,11 @@
 <h2>1. Membership agreement</h2>
 
 <p>Please review and sign the following document, then send it to
-Lauren Andrews, Co-op Manager, at <%= link_to 'fryfarms@hotmail.com', 'mailto:fryfarms@hotmail.com' %>. Or, you can mail it to:</p>
+<%= Manager.full_name -%>, Co-op Managers, at <%= link_to Manager.email, "mailto:#{Manager.email}" %>. Or, you can mail it to:</p>
 
 <p>
-  2560 SE State Rd 116<br />
-  Bluffton, IN 46714
+  <%= Manager.address_line_one -%><br />
+  <%= Manager.address_line_two -%>
 </p>
 
 <table style="border: none;">
@@ -35,7 +35,7 @@ Lauren Andrews, Co-op Manager, at <%= link_to 'fryfarms@hotmail.com', 'mailto:fr
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
       <INPUT TYPE="hidden" NAME="cmd" VALUE="_ext-enter">
       <INPUT TYPE="hidden" NAME="redirect_cmd" VALUE="_xclick-subscriptions">
-      <input type="hidden" name="business" value="fryfarms@hotmail.com">
+      <input type="hidden" name="business" value="<%= Manager.email -%>">
       <input type="hidden" name="item_name" value="Fry Farms Coop - Annual Membership">
       <input type="hidden" name="item_number" value="fryfarms-oneyear">
       <input type="hidden" name="no_shipping" value="1">
@@ -54,7 +54,7 @@ Lauren Andrews, Co-op Manager, at <%= link_to 'fryfarms@hotmail.com', 'mailto:fr
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
       <INPUT TYPE="hidden" NAME="cmd" VALUE="_xclick">
       <INPUT TYPE="hidden" NAME="redirect_cmd" VALUE="_xclick">
-      <input type="hidden" name="business" value="fryfarms@hotmail.com">
+      <input type="hidden" name="business" value="<%= Manager.email -%>">
       <input type="hidden" name="item_name" value="Fry Farms Coop - Membership fee">
       <input type="hidden" name="item_number" value="fryfarms-oneyear">
       <input type="hidden" name="no_shipping" value="1">
