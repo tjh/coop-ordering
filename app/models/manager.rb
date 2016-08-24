@@ -10,7 +10,7 @@ class Manager
     end
 
     def address_line_one
-      '404 West Williamst Street'
+      '404 West Williams Street'
     end
 
     def address_line_two
