@@ -2,7 +2,7 @@ class OrderMailer < ActionMailer::Base
   if Rails.env.development?
     default from: 'tim@theharveys.org'
   else
-    default from: 'fryfarms@hotmail.com'
+    default from: Manager.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
