@@ -16,7 +16,13 @@
       <td style="text-align: center;"><%= red_green item.is_stocked, 'Available', 'Out of stock' %></td>
       <% if is_admin? %>
         <td><%= link_to "Edit", edit_item_path(item) %></td>
-        <td><%= link_to "Delete", item, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td>
+          <% if item.line_items.empty?%>
+            <%= link_to "Delete", item, :confirm => 'Are you sure?', :method => :delete %>
+          <% else %>
+            In use
+          <% end %>
+        </td>
       <% end %>
     <% end %>
   <% end %>
