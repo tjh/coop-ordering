@@ -12,7 +12,6 @@
     <%= content_tag :tr, :class => row_class do %>
       <th><%= link_to category.name, admin_category_path(category) %></th>
       <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
-      <td><%= link_to 'Delete', admin_category_path(category), :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
     <%= content_tag :tr, :class => row_class do %>
       <td colspan="3"><%= category.notes %></td>

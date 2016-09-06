@@ -17,10 +17,10 @@
       <% if is_admin? %>
         <td><%= link_to "Edit", edit_item_path(item) %></td>
         <td>
-          <% if item.line_items.empty?%>
+          <% if item.line_items.empty? %>
             <%= link_to "Delete", item, :confirm => 'Are you sure?', :method => :delete %>
           <% else %>
-            In use
+            In Use
           <% end %>
         </td>
       <% end %>

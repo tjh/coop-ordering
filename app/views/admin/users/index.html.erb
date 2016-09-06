@@ -21,7 +21,13 @@
       </th>
       <td style="text-align: center;"><%= membership_status(user) %></td>
       <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
-      <td><%= link_to "Delete", admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <% if user.orders.empty? %>
+          <%= link_to "Delete", admin_user_path(user), :confirm => 'Are you really, really sure? This is generally a really bad itea.', :method => :delete %>
+        <% else %>
+          Has orders
+        <% end %>
+      </td>
     <% end %>
   <% end %>
   <tr>

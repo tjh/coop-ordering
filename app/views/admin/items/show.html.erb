@@ -15,5 +15,7 @@
 
 <p>
   <%= link_to "Edit", edit_admin_item_path(@item) %> |
-  <%= link_to "Delete", admin_item_path(@item), :confirm => 'Are you sure?', :method => :delete %> |
+  <% if @item.line_items.empty? %>
+    <%= link_to "Delete", admin_item_path(@item), :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
 </p>
