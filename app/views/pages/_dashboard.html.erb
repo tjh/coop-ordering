@@ -1,6 +1,5 @@
-<p>Welcome back, <%= current_user.first_name %>.</p>
-
 <% if is_admin? %>
+  <h2>Admin Tools</h2>
   As an admin, you may manage:
   <ul>
     <li><%= link_to 'most recent orders', admin_batches_path %></li>
@@ -21,13 +20,14 @@
 
   <p>The current server time is: <%= DateTime.now.to_s(:pretty) %></p>
 
+  <h1>Member visible sections</h1>
 <% end %>
 
 <% if Batch.current(current_user.pickup_id).deadline && Batch.current(current_user.pickup_id).deadline < DateTime.now %>
   <p>The <span style="color: red;">deadline has passed</span> to place your order for the upcoming pickup. Orders placed
     now will be available on the following pickup date.</p>
 <% elsif Batch.current(current_user.pickup_id).deadline %>
-  <p>The deadline to place orders for the next pickup is: <%= Batch.current(current_user.pickup_id).deadline.to_s(:pretty) %></p>
+  <h4>The deadline to place orders for the next pickup is: <%= Batch.current(current_user.pickup_id).deadline.to_s(:pretty) %></h4>
 <% end %>
 
 <% if !current_user.is_member? %>
