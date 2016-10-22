@@ -22,7 +22,9 @@
 
     <p>
     <% order.line_items.each do |line_item| %>
-      <%= line_item.quantity %> <%= line_item.sold_per %> <%= line_item.name %><br />
+      <%= line_item.quantity %> <%= line_item.sold_per %> <%= line_item.name %>
+      <span style="font-size: 11px; color: red;"><%= " (Limited availability)" if line_item.is_limited %></span>
+    <br />
     <% end %>
     </p>
   <% end %>

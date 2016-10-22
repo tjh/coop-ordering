@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150313042030) do
+ActiveRecord::Schema.define(:version => 20161022184903) do
 
   create_table "batches", :force => true do |t|
     t.datetime "deadline"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20150313042030) do
     t.datetime "updated_at"
     t.string   "sold_per"
     t.boolean  "is_stocked"
+    t.boolean  "is_limited"
   end
 
   create_table "order_deadlines", :force => true do |t|

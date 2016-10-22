@@ -32,7 +32,11 @@
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><%= qty %> <%= item.sold_per %></td>
-          <td><%= item.name %><br /><span style="font-size: 11px;"><%= "(#{item.notes})" if item.notes.present? %></span></td>
+          <td>
+            <%= item.name %><br />
+            <span style="font-size: 11px; color: red;"><%= " (Limited availability)" if item.is_limited? %></span>
+            <span style="font-size: 11px;"><%= "(#{item.notes})" if item.notes.present? %></span>
+          </td>
           <td><%= item.price.to_currency %>/<%= item.uom %></td>
         </tr>
       <% end %>

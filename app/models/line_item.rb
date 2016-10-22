@@ -19,6 +19,7 @@ class LineItem < ActiveRecord::Base
     self.vendor      = item.category.vendor
     self.sold_per    = item.sold_per
     self.is_stocked  = item.is_stocked
+    self.is_limited  = item.is_limited
     self.vendor_name = vendor.name
   end
 
@@ -36,6 +37,10 @@ class LineItem < ActiveRecord::Base
 
   def is_stocked
     read_attribute(:is_stocked) || item.is_stocked
+  end
+
+  def is_limited
+    read_attribute(:is_limited) || item.is_limited
   end
 
   def name

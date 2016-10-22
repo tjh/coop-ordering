@@ -26,7 +26,11 @@
       <%= content_tag :tr, :class => row_class do %>
         <td>&nbsp;</td>
         <td><%= line_item.quantity %> <%= line_item.sold_per %></td>
-        <td><%= line_item.name %><br /><span style="font-size: 11px;"><%= "(#{line_item.notes})" if line_item.notes.present? %></span></td>
+        <td>
+          <%= line_item.name %><br />
+          <span style="font-size: 11px; color: red;"><%= " (Limited availability)" if line_item.is_limited %></span>
+          <span style="font-size: 11px;"><%= "(#{line_item.notes})" if line_item.notes.present? %></span>
+        </td>
         <td>
           <%= line_item.price.to_currency %>/<%= line_item.uom %>
         </td>
