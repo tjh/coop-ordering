@@ -93,3 +93,28 @@
     </td>
   </tr>
 </table>
+
+<h2>Membership agreement</h2>
+
+<p>When it's time to renew, please review and sign the following document, then send it to
+<%= Manager.full_name -%>, Co-op Managers, at <%= link_to Manager.email, "mailto:#{Manager.email}" %>. Or, you can mail it to:</p>
+
+<p>
+  <%= Manager.full_name -%><br />
+  <%= Manager.address_line_one -%><br />
+  <%= Manager.address_line_two -%>
+</p>
+
+<table style="border: none;">
+  <tr>
+    <td style="width: 250px; text-align:center;">
+      <a href="/SRDCoopMembershipAgreement.pdf"><img src="/images/pdficon_large.png" /></a>
+      <p>
+        <a href="/SRDCoopMembershipAgreement.pdf">
+          <p>Membership agreement
+        </a>
+      </p>
+    </td>
+  </tr>
+</table>
+
