@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161022184903) do
+ActiveRecord::Schema.define(:version => 20161022190325) do
 
   create_table "batches", :force => true do |t|
     t.datetime "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pickup_id"
+    t.text     "manager_notes"
   end
 
   create_table "categories", :force => true do |t|

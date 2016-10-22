@@ -2,6 +2,8 @@
 
 <h3><%= "Order deadline: #{@batch.deadline ? @batch.deadline.to_s(:pretty) : 'none set'}" %></h3>
 
+<%= simple_format(@batch.manager_notes) %>
+
 <table>
   <% @vendors.each do |v| %>
     <tr>

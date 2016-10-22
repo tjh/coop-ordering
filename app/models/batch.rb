@@ -28,6 +28,12 @@ class Batch < ActiveRecord::Base
   validates_presence_of :pickup
 
   def self.current(pickup_id)
-    pickup(pickup_id).after_today.last || create!(:pickup_id => pickup_id)
+    # Carry forward manager notes from the last batch
+    pickup(pickup_id).after_today.last || create!(:pickup_id => pickup_id, :manager_notes => most_recent(pickup_id).try(:manager_notes))
   end
+
+  def self.most_recent(pickup_id)
+    pickup(pickup_id).first
+  end
+
 end

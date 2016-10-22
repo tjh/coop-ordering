@@ -6,6 +6,9 @@
     <%= f.datetime_select :deadline %>
   </div>
 
+  <div class="field">
+    <%= f.label :manager_notes, "Manager notes for this pickup location" %><br />
+    <%= f.text_area :manager_notes, :cols => 80, :rows => 8 %>
   <br/>
 
   <div class="actions">
