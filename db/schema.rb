@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161022190325) do
+ActiveRecord::Schema.define(:version => 20170201053959) do
 
   create_table "batches", :force => true do |t|
     t.datetime "deadline"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20161022190325) do
     t.datetime "updated_at"
     t.integer  "sequence"
     t.text     "notes"
+  end
+
+  create_table "coop_share_renewals", :force => true do |t|
+    t.date     "paid_on"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "items", :force => true do |t|
@@ -123,6 +130,8 @@ ActiveRecord::Schema.define(:version => 20161022190325) do
     t.string   "state"
     t.string   "zip"
     t.integer  "pickup_id"
+    t.date     "last_renewed_on"
+    t.text     "notes"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

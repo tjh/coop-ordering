@@ -1,6 +1,17 @@
 class Admin::UsersController < AdminController
   def index
-    @users = User.by_name.all.paginate :page => params[:page], :per_page => 40
+    @users = User
+
+    case params[:sort_by]
+    when 'email'
+      @users = @users.by_email
+    when 'renewal'
+      @users = @users.by_renewal
+    else
+      @users = @users.by_name
+    end
+
+    @users = @users.all.paginate :page => params[:page], :per_page => 40
   end
 
   def show

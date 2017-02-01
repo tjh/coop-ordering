@@ -60,5 +60,16 @@
     <%= f.label :is_member, "Approved member?" %><br />
     <%= f.check_box :is_member %>
   </p>
+
+  <p>
+    <%= f.label :last_renewed_on, "Last Renewed On" %><br />
+    <%= date_select :user, :last_renewed_on %>
+  </p>
+
+  <p>
+    <%= f.label :notes, "Notes (only visible here)" %><br />
+    <%= f.text_area :notes, :cols => 120, :rows => 10 %>
+  </p>
+
   <p><%= f.submit %></p>
 <% end %>

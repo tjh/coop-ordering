@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th class="nobg">Name</th>
-      <th>Email</th>
+      <th><%= link_to 'Name', url_for(params.merge(:sort_by => nil)) %></th>
+      <th><%= link_to 'Email', url_for(params.merge(:sort_by => 'email')) %></th>
       <th>Pickup</th>
+      <th><%= link_to 'Renewed', url_for(params.merge(:sort_by => 'renewal')) %></th>
       <th>Approved?</th>
       <%= content_tag :th, 'Options', { :colspan => 2, :style => 'text-align: center;' } %>
     </tr>
@@ -19,6 +20,10 @@
       <th>
         <div style="<%= 'color: red;' if !user.pickup.try(:active) -%>"><%= user.pickup && user.pickup.name %></div>
       </th>
+      <td style="text-align: center;">
+        <div style="<%= 'color: red;' if !user.last_renewed_on || (user.last_renewed_on < Date.today) -%>">
+          <%= user.last_renewed_on.try(:to_s, :long) || 'Unknown' %></td>
+        </div>
       <td style="text-align: center;"><%= membership_status(user) %></td>
       <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
       <td>

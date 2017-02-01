@@ -23,9 +23,13 @@ class User < ActiveRecord::Base
                   :city,
                   :state,
                   :zip,
+                  :last_renewed_on,
+                  :notes,
                   :pickup_id
 
   scope :by_name, order("last_name ASC, first_name ASC")
+  scope :by_renewal, order("last_renewed_on ASC, last_name ASC, first_name ASC")
+  scope :by_email, order("email ASC")
 
   validates_presence_of :first_name, :last_name, :daytime_phone, :evening_phone, :address1, :city, :zip
 
